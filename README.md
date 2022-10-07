@@ -1,5 +1,11 @@
 # Screensaver
- Simple screensaver application. This is my first application for MonoGame framework.
+ Simple screensaver application. This is my first application for the MonoGame framework.
 
  ## Screenshot
- ![alt text](screenshot/SampleScreenshot.PNG)
+
+ ### Sample screen 1
+ ![alt text](screenshot/Sample1.PNG)
+
+ ### Sample screen 2
+ ![alt text](screenshot/Sample2.PNG)
+ 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Screensaver
 {
@@ -17,7 +16,7 @@ namespace Screensaver
         private float _iconWidth, _iconHeight;
 
         public GameIcon(Texture2D gameIcon, Vector2 iconPosition, double speed, Vector2 direction, 
-            float screenWidth, float screenHeight, float iconWidth, float iconHeight)
+            float screenWidth, float screenHeight)
         {
             _gameIcon = gameIcon;
             _iconPosition = iconPosition;
@@ -26,8 +25,8 @@ namespace Screensaver
             _targetPostion = new Vector2();
             _screenWidth = screenWidth;
             _screenHeight = screenHeight;
-            _iconWidth = iconWidth;
-            _iconHeight = iconHeight;
+            _iconWidth = gameIcon.Width;
+            _iconHeight = gameIcon.Height;
         }
         public void UpdateIconPosition(double elepsedTime)
         {
@@ -44,7 +43,7 @@ namespace Screensaver
                 else
                 {
                     _iconPosition.X = 2 * (_screenWidth - _iconWidth) - _targetPostion.X;
-                    _directionMove.X = -1.0f;
+                    _directionMove.X = -_directionMove.X;
                 }
             }
             else
@@ -56,7 +55,7 @@ namespace Screensaver
                 else
                 {
                     _iconPosition.X = -_targetPostion.X;
-                    _directionMove.X = +1.0f;
+                    _directionMove.X = -_directionMove.X;
                 }
             }
 
@@ -71,7 +70,7 @@ namespace Screensaver
                 else
                 {
                     _iconPosition.Y = 2 * (_screenHeight - _iconHeight) - _targetPostion.Y;
-                    _directionMove.Y = -1.0f;
+                    _directionMove.Y = -_directionMove.Y;
                 }
             }
             else
@@ -83,17 +82,13 @@ namespace Screensaver
                 else
                 {
                     _iconPosition.Y = -_targetPostion.Y;
-                    _directionMove.Y = +1.0f;
+                    _directionMove.Y = -_directionMove.Y;
                 }
             }
         }
-        public Texture2D GetGameIconTexture2D()
+        public void DrawIcon(SpriteBatch spriteBatch)
         {
-            return _gameIcon;
-        }
-        public Vector2 GetIconPosition()
-        {
-            return _iconPosition;
+            spriteBatch.Draw(_gameIcon, _iconPosition, Color.White);
         }
     }
 }

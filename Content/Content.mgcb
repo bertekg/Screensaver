@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:BG_Icon_128.png
 
+#begin CB_Icon128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:CB_Icon128.png;CB_Icon_128.png
+
 #begin FB3D_Icon_128.png
 /importer:TextureImporter
 /processor:TextureProcessor

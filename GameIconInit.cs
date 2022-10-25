@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace Screensaver
 {
@@ -9,11 +10,12 @@ namespace Screensaver
         private Vector2 _direction;
         private double _speed;
 
-        public GameIconInit(string iconPath, Vector2 startPosition, Vector2 direction, double speed)
+        public GameIconInit(string iconPath, Vector2 startPosition, double angle, double speed)
         {
             _iconPath = iconPath;
             _startPosition = startPosition;
-            _direction = direction;
+            double radians = angle * (Math.PI / 180.0d);
+            _direction = new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians));
             _speed = speed;
         }
 

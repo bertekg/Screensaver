@@ -1,13 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace Screensaver
 {
     public class Game1 : Game
     {
+        public static int ScreenWidth = 1280;
+        public static int ScreenHeight = 720;
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -22,8 +24,8 @@ namespace Screensaver
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -48,8 +50,7 @@ namespace Screensaver
             foreach (GameIconInit gameIconInit in listGameIconInit)
             {
                 Texture2D iconTexture2D = Content.Load<Texture2D>(gameIconInit.GetIconPath());
-                GameIcon gameIcon = new GameIcon(iconTexture2D, gameIconInit.GetStartPosition(), gameIconInit.GetSpeed(), gameIconInit.GetDirection(),
-                    _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+                GameIcon gameIcon = new GameIcon(iconTexture2D, gameIconInit.GetStartPosition(), gameIconInit.GetSpeed(), gameIconInit.GetDirection());
                 listIcons.Add(gameIcon);
             }
 

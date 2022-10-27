@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Screensaver
 {
@@ -13,12 +14,13 @@ namespace Screensaver
 
         private float currChangeValue;
 
-        public GameIcon(Texture2D gameIcon, Vector2 iconPosition, double speed, Vector2 direction)
+        public GameIcon(Texture2D gameIcon, Vector2 iconPosition, double speed, float angle)
         {
             _gameIcon = gameIcon;
             _iconPosition = iconPosition;
             _speed = speed;
-            _directionMove = direction;
+            float radians = MathHelper.ToRadians(angle);
+            _directionMove = new Vector2(MathF.Cos(radians), -MathF.Sin(radians));
             _targetPostion = new Vector2();
         }
         public void UpdateIconPosition(double elepsedTime)

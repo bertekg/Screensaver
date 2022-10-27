@@ -35,26 +35,12 @@ namespace Screensaver
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            List<GameIconInit> listGameIconInit = new List<GameIconInit>();
-            listGameIconInit.Add(new GameIconInit("BG_Icon_128", new Vector2(600.0f, 300.0f), 45.0d, 175.0d));
-            listGameIconInit.Add(new GameIconInit("P_Icon_128", new Vector2(100.0f, 250.0f), 110.0d, 200.0d));
-            listGameIconInit.Add(new GameIconInit("FB3D_Icon_128", new Vector2(550.0f, 150.0f), 225.0d, 225.0d));
-            listGameIconInit.Add(new GameIconInit("CB_Icon_128", new Vector2(450.0f, 350.0f), 285.0d, 250.0d));
-            _gameIcons = InitalGameIcons(listGameIconInit);
-        }
+            _gameIcons = new List<GameIcon>();
 
-        private List<GameIcon> InitalGameIcons(List<GameIconInit> listGameIconInit)
-        {
-            List<GameIcon> listIcons = new List<GameIcon>();
-
-            foreach (GameIconInit gameIconInit in listGameIconInit)
-            {
-                Texture2D iconTexture2D = Content.Load<Texture2D>(gameIconInit.GetIconPath());
-                GameIcon gameIcon = new GameIcon(iconTexture2D, gameIconInit.GetStartPosition(), gameIconInit.GetSpeed(), gameIconInit.GetDirection());
-                listIcons.Add(gameIcon);
-            }
-
-            return listIcons;
+            _gameIcons.Add(new GameIcon(Content.Load<Texture2D>("BG_Icon_128"), new Vector2(600.0f, 300.0f), 175.0d, 45.0f));
+            _gameIcons.Add(new GameIcon(Content.Load<Texture2D>("P_Icon_128"), new Vector2(100.0f, 250.0f), 200.0d, 110.0f));
+            _gameIcons.Add(new GameIcon(Content.Load<Texture2D>("FB3D_Icon_128"), new Vector2(550.0f, 150.0f), 225.0d, 225.0f));
+            _gameIcons.Add(new GameIcon(Content.Load<Texture2D>("CB_Icon_128"), new Vector2(450.0f, 350.0f), 250.0d, 285.0f));
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,9 +49,7 @@ namespace Screensaver
                 Exit();
 
             foreach (GameIcon gameIcon in _gameIcons)
-            {
                 gameIcon.UpdateIconPosition(gameTime.ElapsedGameTime.TotalSeconds);
-            }
 
             base.Update(gameTime);
         }
@@ -75,10 +59,10 @@ namespace Screensaver
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
             foreach (GameIcon gameIcon in _gameIcons)
-            {
                 gameIcon.DrawIcon(_spriteBatch);
-            }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
